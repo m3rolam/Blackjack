@@ -9,6 +9,11 @@ class Player {
 
     final ArrayList<Card> hand;
     private boolean ace;
+    private static final int ACE_VALUE_ONE = 1;
+    private static final int ACE_VALUE_ELEVEN = 11;
+    private static final int FACE_VALUE_TEN = 10;
+    private static final int BLACKJACK = 21;
+
 
     public Player() {
         hand = new ArrayList<>();
@@ -21,7 +26,7 @@ class Player {
      * @param c a Card to be added to the players hand.
      */
     public void takeCard(Card c) {
-        if (c.getValue() == 1) {
+        if (c.getValue() == ACE_VALUE_ONE) {
             ace = true;
             hand.add(c);
         } else {
@@ -35,7 +40,7 @@ class Player {
      * @return true if the player has and ace and a 10 or higher.
      */
     public boolean hasBlackjack() {
-        return ace && (hand.get(0).getValue() >= 10 || hand.get(1).getValue() >= 10);
+        return ace && (hand.get(0).getValue() >= FACE_VALUE_TEN || hand.get(1).getValue() >= FACE_VALUE_TEN);
     }
 
     /**
@@ -46,12 +51,12 @@ class Player {
     public boolean hasBust() {
         int total = 0;
         for (Card aHand : hand) {
-            if (aHand.getValue() < 11) {
+            if (aHand.getValue() < ACE_VALUE_ELEVEN) {
                 total += aHand.getValue();
             } else {
-                total += 10;
+                total += FACE_VALUE_TEN;
             }
-            if (total > 21) {
+            if (total > BLACKJACK) {
                 return true;
             }
         }
@@ -67,15 +72,15 @@ class Player {
     public int getHandValue() {
         int total = 0;
         for (Card aHand : hand) {
-            if (aHand.getValue() < 11) {
+            if (aHand.getValue() < ACE_VALUE_ELEVEN) {
                 total += aHand.getValue();
             } else {
-                total += 10;
+                total += FACE_VALUE_TEN;
             }
         }
         if (ace) {
-            if (!(total + 10 > 21)) {
-                return total + 10;
+            if (!(total + ACE_VALUE_ELEVEN - 1 > BLACKJACK)) {
+                return total + ACE_VALUE_ELEVEN - 1;
             }
         }
         return total;

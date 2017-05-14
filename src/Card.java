@@ -8,6 +8,10 @@ public class Card {
 
     private final int value;
     private final String suit;
+    private static final int JACK = 11;
+    private static final int QUEEN = 12;
+    private static final int KING = 13;
+    private static final int ACE = 1;
 
     /**
      *
@@ -28,13 +32,13 @@ public class Card {
      */
     @Override
     public String toString() {
-        if (value == 11) {
+        if (value == JACK) {
             return "(J," + suit + ")";
-        } else if (value == 12) {
+        } else if (value == QUEEN) {
             return "(Q," + suit + ")";
-        } else if (value == 13) {
+        } else if (value == KING) {
             return "(K," + suit + ")";
-        } else if (value == 1) {
+        } else if (value == ACE) {
             return "(A," + suit + ")";
         } else {
             return "(" + (value) + "," + suit + ")";
