@@ -23,7 +23,7 @@ class Deck {
      */
 
     public Deck() {
-        deck = new LinkedList();
+        deck = new LinkedList<>();
         for (int i = 1; i < FACE_VALUES + 1; i++) {
             deck.add(new Card(i, SPADES));
             deck.add(new Card(i, CLUB));
